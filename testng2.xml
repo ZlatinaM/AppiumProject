@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" parallel="tests">
+
+    <listeners>
+        <listener class-name="testUtils.Listeners"/>
+    </listeners>
+
+    <test name="addProductToCart">
+    <parameter name="deviceName" value="Tiramisu"/>
+    <classes>
+        <class name="appiumTests.AddProductToCartTest"/>
+    </classes>
+    </test>
+    <test name="verifyTermsOfConditionsPopUp">
+        <parameter name="deviceName" value="TiramisuSecond"/>
+        <classes>
+            <class name="appiumTests.CartPageTests"/>
+        </classes>
+    </test>
+
+</suite>

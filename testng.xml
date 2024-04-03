@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+
+    <listeners>
+        <listener class-name="testUtils.Listeners"/>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="C:/Users/zmarcheva/Desktop/AppiumProject">
+        <classes>
+            <class name="appiumTests.AddProductToCartTest">
+                <methods>
+                    <include name="addProductToCart"/>
+                </methods>
+            </class>
+            <class name="appiumTests.CartPageTests">
+                <methods>
+                    <include name="verifyTotalPurchaseAmountIsCalculatedCorrectly"/>
+                    <include name="verifyTermsOfConditionsPopUp"/>
+                    <include name="verifyPurchaseButtonLeadsToGooglePage"/>
+                </methods>
+            </class>
+            <class name="appiumTests.FormPageTests">
+                <methods>
+                    <include name="validateSuccessfulFillingForm"/>
+                    <include name="verifyToastMessageWhenNoNameIsGiven"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
