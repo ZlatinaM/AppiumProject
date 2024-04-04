@@ -4,4 +4,4 @@ There is a property file that allows some commonly used variables to be easily m
 TestNG is the test framework. The testng.xml file is the runner file.
 In some tests @DataProvider option is used just for exercise this approach.
 ExtentReports is the reporting tool that is used in the framework. The TestNG listener interafce is used to log the statuses of the tests and to attach screenshot to the report.
-The framework has integration with maven, so the tests can be run via the terminal, not only via the IDE.
+The framework has integration with maven, so the tests can be run via the terminal (mvn test -PRegression), not only via the IDE.
