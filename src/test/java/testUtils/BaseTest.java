@@ -1,5 +1,7 @@
 package testUtils;
 
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import pageObjects.FormPage;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
@@ -10,7 +12,9 @@ import org.testng.annotations.BeforeMethod;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.Duration;
@@ -21,26 +25,29 @@ public class BaseTest {
     public AndroidDriver driver;
     public AppiumDriverLocalService service;
     public FormPage formPage;
+    Properties prop = new Properties();
 
-    @BeforeMethod
-    public void configureAppium() throws URISyntaxException, IOException {
 
-        Properties prop = new Properties();
+    @BeforeSuite
+    public void startService() throws IOException {
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\resources\\data.properties");
         prop.load(fis);
         String ipAddress = prop.getProperty("ipAddress");
         int port = Integer.parseInt(prop.getProperty("port"));
-
-        String device = System.getProperty("androidDeviceName") != null ? System.getProperty("androidDeviceName") : prop.getProperty("androidDeviceName");
         String appiumFilePath = System.getProperty("appiumFile") != null ? System.getProperty("appiumFile") : prop.getProperty("appiumFile");
 
         service = new AppiumServiceBuilder().withAppiumJS(new File(appiumFilePath))
                 .withIPAddress(ipAddress).usingPort(port).build();
         service.start();
 
+    }
+
+    @BeforeMethod
+    public void openDriver() throws URISyntaxException, MalformedURLException {
+        String device = System.getProperty("androidDeviceName") != null ? System.getProperty("androidDeviceName") : prop.getProperty("androidDeviceName");
         UiAutomator2Options options = new UiAutomator2Options();
         options.setDeviceName(device);
-        options.setChromedriverExecutable(System.getProperty("user.dir") + "\\src\\test\\resources\\version_103\\chromedriver.exe");
+        options.setChromedriverExecutable(System.getProperty("user.dir") + "\\src\\test\\resources\\chrome_version_123\\chromedriver.exe");
         options.setApp(System.getProperty("user.dir") + "\\src\\test\\resources\\General-Store.apk");
 
         driver = new AndroidDriver(new URI("http://127.0.0.1:4723/").toURL(), options);
@@ -49,8 +56,14 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void closeDriver() {
         driver.quit();
+
+    }
+
+    @AfterSuite
+    public void stopService() {
         service.stop();
+
     }
 }
