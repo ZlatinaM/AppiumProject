@@ -39,7 +39,6 @@ public class BaseTest {
         service = new AppiumServiceBuilder().withAppiumJS(new File(appiumFilePath))
                 .withIPAddress(ipAddress).usingPort(port).build();
         service.start();
-
     }
 
     @BeforeMethod
@@ -58,12 +57,10 @@ public class BaseTest {
     @AfterMethod
     public void closeDriver() {
         driver.quit();
-
     }
 
     @AfterSuite
     public void stopService() {
         service.stop();
-
     }
 }
