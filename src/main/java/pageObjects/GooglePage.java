@@ -13,7 +13,7 @@ public class GooglePage extends CommonActions {
 
     AndroidDriver driver;
 
-    public GooglePage(AndroidDriver driver){
+    public GooglePage(AndroidDriver driver) {
         super(driver);
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -38,17 +38,17 @@ public class GooglePage extends CommonActions {
         return this;
     }
 
-    public GooglePage scrollInWeb(){
+    public GooglePage scrollInWeb() {
         scrollInWebContext();
         return this;
     }
 
-    public GooglePage acceptCookies(){
+    public GooglePage acceptCookies() {
         clickToElement(acceptCookiesBtn);
         return this;
     }
 
-    public GooglePage searchInTheField(String text){
+    public GooglePage searchInTheField(String text) {
         googleTextField.sendKeys(text);
         return this;
     }

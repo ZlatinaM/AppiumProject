@@ -38,50 +38,49 @@ public class FormPage extends CommonActions {
     private WebElement toastMessage;
 
 
-    public FormPage clickOnCountryDropDown(){
+    public FormPage clickOnCountryDropDown() {
         countryDropDown.click();
         return this;
     }
+
     public FormPage selectCountry(String country) {
-        driver.findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='"+country+"']")).click();
+        driver.findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/text1' and @text='" + country + "']")).click();
         return this;
     }
 
-    public FormPage typeName(String name){
+    public FormPage typeName(String name) {
         nameTextField.sendKeys(name);
         hideKeyboard();
         return this;
     }
 
-    public FormPage selectGender(String gender){
-        if (gender.equalsIgnoreCase("Male")){
+    public FormPage selectGender(String gender) {
+        if (gender.equalsIgnoreCase("Male")) {
             maleRadioBtn.click();
-        }else if (gender.equalsIgnoreCase("Female")){
+        } else if (gender.equalsIgnoreCase("Female")) {
             femaleRadioBtn.click();
         }
         return this;
     }
 
-    public ProductPage clickOnLetsShopBtn(){
+    public ProductPage clickOnLetsShopBtn() {
         letsShopBtn.click();
         return new ProductPage(driver);
     }
 
-    public FormPage scrollUntilTextIsVisible(String text){
+    public FormPage scrollUntilTextIsVisible(String text) {
         scrollUntilVisibilityOfText(text);
         return this;
     }
 
-    public String getToastMessage(){
+    public String getToastMessage() {
         return toastMessage.getAttribute("name");
 
     }
 
-    public void setUpActivity(){
+    public void setUpActivity() {
         startActivity("com.androidsample.generalstore/com.androidsample.generalstore.MainActivity");
     }
-
-
 
 
 }

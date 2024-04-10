@@ -16,21 +16,21 @@ public class CommonActions {
 
     AndroidDriver driver;
 
-    public CommonActions(AndroidDriver driver){
+    public CommonActions(AndroidDriver driver) {
         this.driver = driver;
     }
 
-    public void longPressAction(WebElement element){
-        ((JavascriptExecutor)driver).executeScript("mobile: longClickGesture",
-                ImmutableMap.of("elementId", ((RemoteWebElement)element).getId(),
-                        "duration",2000));
+    public void longPressAction(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("mobile: longClickGesture",
+                ImmutableMap.of("elementId", ((RemoteWebElement) element).getId(),
+                        "duration", 2000));
     }
 
-    public void scrollUntilVisibilityOfText(String text){
+    public void scrollUntilVisibilityOfText(String text) {
         driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"" + text + "\"));"));
     }
 
-    public void scrollInWebContext(){
+    public void scrollInWebContext() {
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
     }
 
@@ -49,24 +49,24 @@ public class CommonActions {
                         "endY", y));
     }
 
-    public void hideKeyboard(){
+    public void hideKeyboard() {
         driver.hideKeyboard();
     }
 
-    public Double formatToDouble(String amount){
+    public Double formatToDouble(String amount) {
         return Double.parseDouble(amount.substring(1));
     }
 
-    public void clickToElement(WebElement element){
+    public void clickToElement(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
     }
 
-    public void waitUntilVisibilityOfElement(By locator){
+    public void waitUntilVisibilityOfElement(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    public void startActivity(String activity){
+    public void startActivity(String activity) {
         ((JavascriptExecutor) driver).executeScript("mobile: startActivity", ImmutableMap.of("intent", activity));
 
     }

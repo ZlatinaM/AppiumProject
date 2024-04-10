@@ -21,7 +21,7 @@ public class BaseTest {
     public AndroidDriver driver;
     public AppiumDriverLocalService service;
     public FormPage formPage;
-    
+
     @BeforeMethod
     public void configureAppium() throws URISyntaxException, IOException {
 
@@ -31,8 +31,8 @@ public class BaseTest {
         String ipAddress = prop.getProperty("ipAddress");
         int port = Integer.parseInt(prop.getProperty("port"));
 
-        String device = System.getProperty("androidDeviceName")!=null ? System.getProperty("androidDeviceName"): prop.getProperty("androidDeviceName");
-        String appiumFilePath = System.getProperty("appiumFile")!=null ? System.getProperty("appiumFile") : prop.getProperty("appiumFile");
+        String device = System.getProperty("androidDeviceName") != null ? System.getProperty("androidDeviceName") : prop.getProperty("androidDeviceName");
+        String appiumFilePath = System.getProperty("appiumFile") != null ? System.getProperty("appiumFile") : prop.getProperty("appiumFile");
 
         service = new AppiumServiceBuilder().withAppiumJS(new File(appiumFilePath))
                 .withIPAddress(ipAddress).usingPort(port).build();

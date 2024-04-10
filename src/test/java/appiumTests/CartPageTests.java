@@ -47,7 +47,7 @@ public class CartPageTests extends BaseTest {
     }
 
     @Test
-    public void verifyPurchaseButtonLeadsToGooglePage(){
+    public void verifyPurchaseButtonLeadsToGooglePage() {
         formPage.clickOnCountryDropDown()
                 .selectCountry("Albania")
                 .typeName("abc");

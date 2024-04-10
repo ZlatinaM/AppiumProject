@@ -14,7 +14,7 @@ public class ProductPage extends CommonActions {
 
     AndroidDriver driver;
 
-    public ProductPage(AndroidDriver driver){
+    public ProductPage(AndroidDriver driver) {
         super(driver);
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -37,39 +37,40 @@ public class ProductPage extends CommonActions {
     private List<WebElement> listOfAddToCart;
 
 
-    public ProductPage addProductToCart(String productName){
+    public ProductPage addProductToCart(String productName) {
         int productCount = products.size();
-        for (int i=0; i<productCount; i++){
+        for (int i = 0; i < productCount; i++) {
             String product = products.get(i).getText();
-            if (product.equalsIgnoreCase(productName)){
+            if (product.equalsIgnoreCase(productName)) {
                 addToCartButtons.get(i).click();
             }
         }
         return this;
     }
 
-    public CartPage clickOnCartButton(){
+    public CartPage clickOnCartButton() {
         cartBtn.click();
         return new CartPage(driver);
     }
 
-    public ProductPage scrollUntilTextIsVisible(String visibleText){
+    public ProductPage scrollUntilTextIsVisible(String visibleText) {
         scrollUntilVisibilityOfText(visibleText);
         return this;
 
     }
 
-    public ProductPage addProductByIndex(int index){
-         listOfAddToCart.get(index).click();
-         return this;
+    public ProductPage addProductByIndex(int index) {
+        listOfAddToCart.get(index).click();
+        return this;
 
     }
 
-    public String getPageTitle(){
+    public String getPageTitle() {
         return pageTitle.getText();
 
     }
-    public ProductPage waitUntilPageIsLoaded(){
+
+    public ProductPage waitUntilPageIsLoaded() {
         waitUntilVisibilityOfElement(By.id("com.androidsample.generalstore:id/toolbar_title"));
         return this;
 

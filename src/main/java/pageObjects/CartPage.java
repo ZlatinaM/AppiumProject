@@ -16,7 +16,7 @@ import java.util.List;
 public class CartPage extends CommonActions {
     AndroidDriver driver;
 
-    public CartPage(AndroidDriver driver){
+    public CartPage(AndroidDriver driver) {
         super(driver);
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -47,65 +47,65 @@ public class CartPage extends CommonActions {
     private WebElement productName;
 
 
-    public CartPage selectCheckBox(){
+    public CartPage selectCheckBox() {
         sendMeEmailCheckBox.click();
         return this;
     }
 
-    public CartPage readTermsOfConditions(){
+    public CartPage readTermsOfConditions() {
         longPressAction(termOfConditionsBtn);
         return this;
     }
 
-    public CartPage closeTermsOfCondition(){
+    public CartPage closeTermsOfCondition() {
         closeTermOfConditionsBtn.click();
         return this;
     }
 
-    public String verifyTermsOfConditionsPopUpTitle(){
+    public String verifyTermsOfConditionsPopUpTitle() {
         return termsPopUpTitle.getText();
     }
 
-    public GooglePage visitTheWebsiteToCompletePurchase(){
+    public GooglePage visitTheWebsiteToCompletePurchase() {
         visitTheWebSiteBth.click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("com.androidsample.generalstore:id/btnProceed")));
         return new GooglePage(driver);
     }
 
-    public boolean theTotalPurchaseAmountIsCalculatedCorrectly(){
+    public boolean theTotalPurchaseAmountIsCalculatedCorrectly() {
         boolean isCalculatedCorrectly;
 
         int count = listOfPrices.size();
         double sum = 0;
-        for (int i=0; i<count; i++){
+        for (int i = 0; i < count; i++) {
             String price = listOfPrices.get(i).getText();
 
             Double formatted = formatToDouble(price);
             System.out.println(formatted);
 
-            sum = sum+formatted;
+            sum = sum + formatted;
         }
         System.out.println(sum);
 
         String totalAmount = totalPurchaseAmount.getText();
         Double displayedSum = formatToDouble(totalAmount);
 
-        if (sum == displayedSum){
+        if (sum == displayedSum) {
             isCalculatedCorrectly = true;
 
-        }else{
+        } else {
             isCalculatedCorrectly = false;
         }
 
         return isCalculatedCorrectly;
     }
 
-    public String getProductNameDisplayed(){
+    public String getProductNameDisplayed() {
         return productName.getText();
     }
 
-    public CartPage waitUntilPageIsLoaded(){
+    public CartPage waitUntilPageIsLoaded() {
         waitUntilVisibilityOfElement(By.xpath("//android.widget.TextView[@text='Total Purchase Amount:  ']"));
         return this;
     }
