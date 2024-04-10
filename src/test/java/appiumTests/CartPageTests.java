@@ -13,15 +13,6 @@ public class CartPageTests extends BaseTest {
     CartPage cartPage;
     GooglePage googlePage;
 
-    /*@BeforeMethod
-    public void initialNavigation(){
-        formPage.clickOnCountryDropDown().
-                selectCountry("Albania")
-                .typeName("abc");
-        productPage = formPage.clickOnLetsShopBtn()
-                .waitUntilPageIsLoaded();
-
-    }*/
 
     @Test
     public void verifyTotalPurchaseAmountIsCalculatedCorrectly() {

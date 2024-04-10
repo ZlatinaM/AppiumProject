@@ -13,7 +13,6 @@ import java.io.IOException;
 public class Reporter {
 
     public static ExtentReports extent;
-    AppiumDriver driver;
 
     public static ExtentReports getExtentReportObject() {
         String path = System.getProperty("user.dir") + "//reports//ExtendReport.html";
@@ -28,16 +27,6 @@ public class Reporter {
         return extent;
 
     }
-
-    /*public String getScreenshotPath(String testCaseName, AppiumDriver driver) throws IOException {
-        File source = driver.getScreenshotAs(OutputType.FILE);
-        String destinationFile = "reports\\" + testCaseName + ".png";
-        FileUtils.copyFile(source, new File(destinationFile));
-        return destinationFile;
-
-    }*/
-
-
 }
 
 

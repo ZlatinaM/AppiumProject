@@ -1,7 +1,5 @@
 package testUtils;
 
-import io.appium.java_client.AppiumDriver;
-import org.testng.annotations.Parameters;
 import pageObjects.FormPage;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
@@ -25,7 +23,6 @@ public class BaseTest {
     public FormPage formPage;
     
     @BeforeMethod
-    //@Parameters({"deviceName"})
     public void configureAppium() throws URISyntaxException, IOException {
 
         Properties prop = new Properties();
@@ -33,7 +30,7 @@ public class BaseTest {
         prop.load(fis);
         String ipAddress = prop.getProperty("ipAddress");
         int port = Integer.parseInt(prop.getProperty("port"));
-        //String deviceName = prop.getProperty("androidDeviceName");
+
         String device = System.getProperty("androidDeviceName")!=null ? System.getProperty("androidDeviceName"): prop.getProperty("androidDeviceName");
         String appiumFilePath = System.getProperty("appiumFile")!=null ? System.getProperty("appiumFile") : prop.getProperty("appiumFile");
 
