@@ -10,7 +10,7 @@ public class FormPageTests extends BaseTest {
 
     ProductPage productPage;
 
-    @Test(dataProvider = "getData", dataProviderClass = DataProviderClass.class, enabled=false)
+    @Test(dataProvider = "getData", dataProviderClass = DataProviderClass.class)
     public void validateSuccessfulFillingForm(String text, String country, String name, String gender) {
         formPage.clickOnCountryDropDown()
                 .scrollUntilTextIsVisible(text)

@@ -1,5 +1,6 @@
 package testUtils;
 
+import io.appium.java_client.AppiumDriver;
 import org.testng.annotations.Parameters;
 import pageObjects.FormPage;
 import io.appium.java_client.android.AndroidDriver;
@@ -17,15 +18,12 @@ import java.net.URISyntaxException;
 import java.time.Duration;
 import java.util.Properties;
 
-
 public class BaseTest {
 
     public AndroidDriver driver;
     public AppiumDriverLocalService service;
     public FormPage formPage;
-
-
-
+    
     @BeforeMethod
     //@Parameters({"deviceName"})
     public void configureAppium() throws URISyntaxException, IOException {
@@ -37,9 +35,9 @@ public class BaseTest {
         int port = Integer.parseInt(prop.getProperty("port"));
         //String deviceName = prop.getProperty("androidDeviceName");
         String device = System.getProperty("androidDeviceName")!=null ? System.getProperty("androidDeviceName"): prop.getProperty("androidDeviceName");
+        String appiumFilePath = System.getProperty("appiumFile")!=null ? System.getProperty("appiumFile") : prop.getProperty("appiumFile");
 
-
-        service = new AppiumServiceBuilder().withAppiumJS(new File("C:\\Users\\zmarcheva\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
+        service = new AppiumServiceBuilder().withAppiumJS(new File(appiumFilePath))
                 .withIPAddress(ipAddress).usingPort(port).build();
         service.start();
 
