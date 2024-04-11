@@ -28,12 +28,14 @@ public class BaseTest {
     Properties prop = new Properties();
 
 
+
     @BeforeSuite
     public void startService() throws IOException {
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\resources\\data.properties");
         prop.load(fis);
         String ipAddress = prop.getProperty("ipAddress");
         int port = Integer.parseInt(prop.getProperty("port"));
+
         String appiumFilePath = System.getProperty("appiumFile") != null ? System.getProperty("appiumFile") : prop.getProperty("appiumFile");
 
         service = new AppiumServiceBuilder().withAppiumJS(new File(appiumFilePath))
@@ -48,8 +50,8 @@ public class BaseTest {
         options.setDeviceName(device);
         options.setChromedriverExecutable(System.getProperty("user.dir") + "\\src\\test\\resources\\chrome_version_123\\chromedriver.exe");
         options.setApp(System.getProperty("user.dir") + "\\src\\test\\resources\\General-Store.apk");
-
-        driver = new AndroidDriver(new URI("http://127.0.0.1:4723/").toURL(), options);
+        int port = Integer.parseInt(prop.getProperty("port"));
+        driver = new AndroidDriver(new URI("http://127.0.0.1:"+port+"/").toURL(), options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         formPage = new FormPage(driver);
     }
